@@ -37,9 +37,64 @@ $ cmake --build .
 
 To run, from the build directory, `./luxafor blue`. For some systems you might need to use `sudo ./luxafor blue`.
 
-### Arguments
+### Simple Commands
 
-The program takes one argument, which can either be a simple color (`blue`, `green`, etc.) or a hex value, e.g. `0x043f2c`.
+Turn the device on with a solid color:
+```
+./luxafor red              # Solid red
+./luxafor green            # Solid green
+./luxafor blue             # Solid blue
+./luxafor yellow           # Solid yellow
+./luxafor magenta          # Solid magenta
+./luxafor cyan             # Solid cyan
+./luxafor orange           # Solid orange
+./luxafor purple           # Solid purple
+./luxafor pink             # Solid pink
+./luxafor white            # Solid white
+./luxafor off              # Turn off the device
+./luxafor 0xFF00FF         # Custom hex color
+```
+
+### Advanced Commands
+
+The Luxafor Orb supports several lighting effects:
+
+#### Fade Effect
+Smoothly transition to a color:
+```
+./luxafor fade --color red --speed 20
+./luxafor fade --color 0x00FF00 --speed 50 --led front
+```
+
+#### Strobe Effect
+Blink/flash a color:
+```
+./luxafor strobe --color blue --speed 10 --repeat 5
+./luxafor strobe --color red --speed 100 --repeat 0  # Infinite
+```
+
+#### Wave Patterns
+Display one of 5 built-in wave effects:
+```
+./luxafor wave --type 1 --color green --speed 50
+./luxafor wave --type 3 --color 0xFF00FF --speed 20 --repeat 3
+```
+
+#### Built-in Patterns
+Use one of 8 pre-programmed patterns:
+```
+./luxafor pattern --id 7 --repeat 3
+./luxafor pattern --id 1 --repeat 0  # Infinite loop
+```
+
+### Options
+
+- `--color COLOR`: Color name (red, green, blue, yellow, magenta, cyan, orange, purple, pink, white, off) or hex value (0xRRGGBB or #RRGGBB)
+- `--led LED`: Target LED - `all` (default), `front`, or `back`
+- `--speed SPEED`: Effect speed (0-255, lower is faster)
+- `--repeat COUNT`: Number of repetitions (0-255, 0 = infinite)
+- `--type TYPE`: Wave pattern type (1-5)
+- `--id ID`: Built-in pattern ID (1-8)
 
 ## License
 
